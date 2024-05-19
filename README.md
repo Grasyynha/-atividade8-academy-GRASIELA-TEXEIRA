@@ -12,5 +12,5 @@
  3. Implemente testes automatizados da funcionalidade de Cadastrar usuário;
  4. Implemente testes automatizados da funcionalidade Login de usuário;
  5. Implemente testes automatizados da funcionalidade Gerenciar conta.
- 6. 
+
  Obs: Seus testes devem ser feitos utilizando o padrão de Page Objects, Cucumber e step definitions
