@@ -68,13 +68,17 @@ Given('que estou na página de cadastro', () => {
 })
 When('eu preencho os campos obrigatórios com nome "João", email "joao@email.com" e senha "senha123"', () => {
     cadastrar.enterUsername(name)
-    cadastrar.enterEmail('joaoemail.com')
+    cadastrar.enterEmail(email)
     cadastrar.enterPassword(password)
     cadastrar.enterConfirmPassword(password)
     cadastrar.clickSubmit()
 
 })
 Then('minha conta deve ser criada com o tipo de usuário "comum"', () => {
+    cadastrar.elements.btnPerfil()
+    cadastrar.elements.btnConta()
+    cadastrar.elements.tipoUsuario()
+    
 
 })
 

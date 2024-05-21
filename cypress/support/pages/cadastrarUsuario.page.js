@@ -9,7 +9,10 @@ class cadastrarUsuario {
         cadastroBtn :      () => cy.get('button').contains('Cadastrar'),
         successTxt :    () => cy.get('.modal-body > h3'),
         errorTxt :      () => cy.get('.modal-body > h3').should('have.text','Falha no cadastro.'),
-        falhaCadastro:  () => cy.get('p').should('have.text','Não foi possível cadastrar o usuário.')
+        falhaCadastro:  () => cy.get('p').should('have.text','Não foi possível cadastrar o usuário.'),
+        btnPerfil :     () => cy.get('a[href="/profile"]').click(),
+        btnConta :      () => cy.get('a[href="/account"]').click(),
+        tipoUsuario :   () => cy.get('select option:selected').should('have.text', 'Comum')
     }
 
     enterUsername(username)
