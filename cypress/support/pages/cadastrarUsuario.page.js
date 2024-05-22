@@ -1,45 +1,56 @@
-class cadastrarUsuario {
+export default class gerenciarUsuario { 
 
     elements = {
 
-        usernameInput : () => cy.get('input[name="name"]'),      
-        emailInput    : () => cy.get('input[name="email"]'),
-        passwordInput    : () => cy.get('input[name="password"]'),
-        confirmPasswordInput    : () => cy.get('input[name="confirmPassword"]'),    
-        cadastroBtn :      () => cy.get('button').contains('Cadastrar'),
-        successTxt :    () => cy.get('.modal-body > h3'),
-        errorTxt :      () => cy.get('.modal-body > h3').should('have.text','Falha no cadastro.'),
-        falhaCadastro:  () => cy.get('p').should('have.text','Não foi possível cadastrar o usuário.'),
-        btnPerfil :     () => cy.get('a[href="/profile"]').click(),
-        btnConta :      () => cy.get('a[href="/account"]').click(),
-        tipoUsuario :   () => cy.get('select option:selected').should('have.text', 'Comum')
-    }
+        emailInput    :           () => cy.get('input[name="email"]'),
+        passwordInput    :        () => cy.get('input[name="password"]'),
+        gerenciaBtn :             () => cy.get('button').contains('Salvar'),
+        confirmPasswordInput    : () => cy.get('input[name="confirmPassword"]'),
+        btnLogin                : () => cy.get('.login-button').click(),
+        btnPerfil               : () => cy.get('[href="/profile"]').click(),
+        btnGerenciarConta       : () => cy.get('[href="/account"]').click(),
+        btnAlterarSenha         : () => cy.get('.account-password-button').click(),
+        inputNome               : () => cy.get(':nth-child(1) > .profile-input').click(),
+        inputEmail              : () => cy.get(':nth-child(2) > .profile-input').click(),
+        inputSenha              : () => cy.get(':nth-child(5) > .profile-input').click(),
+        inputConfirmaSenha      : () => cy.get(':nth-child(6) > .profile-input').click(),
+        btnSalvar               : () => cy.get('.account-save-button').click()
 
-    enterUsername(username)
-    {
-        this.elements.usernameInput().clear();
-        this.elements.usernameInput().type(username);
     }
- 
+   
     enterEmail(email)
     {
-        this.elements.emailInput().clear();
-        this.elements.emailInput().type(email);
+    this.elements.emailInput().clear();
+    this.elements.emailInput().type(email);
     }
     enterPassword(password)
     {
-        this.elements.passwordInput().clear();
-        this.elements.passwordInput().type(password);
+    this.elements.passwordInput().clear();
+    this.elements.passwordInput().type(password);
     }
+     
     enterConfirmPassword(confirmPassword)
     {
-        this.elements.confirmPasswordInput().clear();
-        this.elements.confirmPasswordInput().type(confirmPassword);
+    this.elements.confirmPasswordInput().clear();
+    this.elements.confirmPasswordInput().type(confirmPassword);
     }
+  
    
+  
     clickSubmit() {
-        this.elements.cadastroBtn().click();
+        this.elements.gerenciaBtn().click();
     }
 
+  
+
+  
+   
+  
+    getErrorMessage() { 
+  
+      return cy.get('.error-message'); 
+  
+    } 
 }
-export default cadastrarUsuario;
+  
+   
