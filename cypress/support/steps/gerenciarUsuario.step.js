@@ -10,91 +10,31 @@ const password = faker.internet.password({length:8})
 
 
 
-Given('que estou autenticado no sistema', () => { 
-
-  // Implemente a autenticação aqui, se necessário 
-
+Given('que estou logado no sistema', () => { 
+  cy.visit('https://raromdb-frontend-c7d7dc3305a0.herokuapp.com/login')
+  gerenciamento.enterEmail('maria@gmail.com')
+  gerenciamento.enterPassword('123456')
+  gerenciamento.elements.btnLogin()
 }); 
+When('acesso a página de edição de perfil', () => {
+  gerenciamento.elements.btnPerfil()
+  gerenciamento.elements.btnGerenciarConta()
+})
+Then('devo visualizar meus dados relevantes', () => {
+  cy.get('.account-container')
+})
+When('devo poder editar meu nome e senha', () => {
+  gerenciamento.elements.inputNome().clear().type('Maria Silva')
+  gerenciamento.elements.btnAlterarSenha()
+})
+When('devo confirmar a nova senha', () => {
+  gerenciamento.elements.inputSenha().type('123456')
+  gerenciamento.elements.inputConfirmaSenha().type('123456')
 
- 
-
-Given('estou na página de edição de informações da minha conta', () => { 
-
-  
-
-}); 
-
- 
-
-When('tento acessar a página de edição de informações da conta', () => { 
-
- 
-}); 
- 
-
-When('tento alterar informações de outro usuário', () => { 
-
-
-
-}); 
-
-
-When('preencho o campo de nome com {string}', (name) => { 
-
-    gerenciar.enterUsername(name)
- 
-}); 
-
-
-When('preencho o campo de senha com {string}', (password) => { 
-
-    gerenciar.enterPassword(password)
-
-}); 
- 
-
-When('preencho o campo de confirmação de senha com {string}', (password) => { 
-
-    cadastrar.enterConfirmPassword(password)
-
-}); 
-
- 
-
-When('clico no botão de salvar', () => { 
-
-    gerenciar.clickSubmit()
-
-}); 
-
- 
-
-Then('minha conta deve ser atualizada com o novo nome e senha', () => { 
-
-  // Implemente a verificação de atualização da conta aqui 
-
-}); 
-
- 
-
-Then('devo receber uma mensagem informando que só posso alterar minhas próprias informações', () => { 
-
-   
-
-}); 
-
- 
-
-Then('devo receber uma mensagem informando que as senhas não coincidem', () => { 
-
- 
-
-}); 
-
- 
-
-Then('devo ver todos os meus dados relevantes preenchidos nos campos de edição', () => { 
-
-  
-
-}); 
+})
+When('devo salvar as alterações', () => {
+  gerenciamento.elements.btnSalvar()
+})
+When('minhas informações devem ser atualizadas com sucesso', () => {
+  cy.get('.modal-body > h3').should('have.text','Sucesso')
+})
