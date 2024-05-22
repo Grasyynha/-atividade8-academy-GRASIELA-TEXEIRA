@@ -1,4 +1,6 @@
-class logarUsuario {
+
+
+export class logarUsuario {
 
     elements = {
 
@@ -24,6 +26,5 @@ class logarUsuario {
         this.elements.loginBtn().click();
     }
 
-    
-}
-export default logarUsuario;
+   }
+
